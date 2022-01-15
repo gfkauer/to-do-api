@@ -13,9 +13,18 @@ var cosrOption = {
 const configureExpress = () => {
     app.use(bodyParser.json());
     app.use(cors(cosrOption));
+
+    app.use((req, res, next) => {
+        res.header(
+            "Access-Control-Allow-Headers",
+            "x-access-token, Origin, Content-Type, Accept"
+        );
+        next();
+    });
+
     app.use(express.urlencoded({ extended: true }));
 
-    app.use('/', routes);
+    app.use('/api', routes);
     app.database = database;
 
     return app;

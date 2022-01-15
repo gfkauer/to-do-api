@@ -1,10 +1,14 @@
 const monngoose = require('mongoose');
 
-const Role = monngoose.model(
-    "Role",
-    new monngoose.Schema({
-        name: String
-    })
-);
+const schema = monngoose.Schema({
+    name: String
+});
 
-module.exports = Role;
+schema.set('toJSON', {
+    transform: (doc, ret, options) => ({
+        id: ret._id,
+        name: ret.name
+    })
+});
+
+module.exports = monngoose.model("Role", schema);

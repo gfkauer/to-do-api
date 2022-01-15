@@ -1,9 +1,11 @@
 const express = require('express');
-//import usersRoute from './users';
+const authRoute = require("./auth");
+const usersRoute = require("./users");
 
 const router = express.Router();
 
-//router.use('/users', usersRoute);
+router.use('/auth', authRoute);
+router.use('/user', usersRoute);
 router.get('/', (req, res) => res.send("Hello world by route!!!!"));
 
 module.exports = router;

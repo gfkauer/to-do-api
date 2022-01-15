@@ -37,7 +37,7 @@ isAdmin = (req, res, next) => {
                     return;
                 }
 
-                for (let i; i < roles.length; i++) {
+                for (let i = 0; i < roles.length; i++) {
                     if (roles[i].name === "admin") {
                         next();
                         return;
